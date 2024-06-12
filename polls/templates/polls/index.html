@@ -1,0 +1,151 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Polls</title>
+    <link rel="icon" type="image/x-icon" href="../../static/images/favicon.ico">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #2980b9;
+            color: white;
+            text-align: center;
+            padding: 1.5em 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .main-content {
+            padding-top: 5.5em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            margin-top: 20px;
+        }
+
+        .poll-list {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        li a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        li a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1em 0;
+            margin-top: 20px;
+            color: #7f8c8d;
+            width: 100%;
+        }
+
+        .search {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 700px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            margin-right: -1px;
+        }
+
+        .search-bar button {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #2980b9;
+            transition: background-color 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>The Django Poll App</h1>
+    </header>
+
+    <div class="main-content">
+        <div class="poll-list">
+            {% if latest_question_list %}
+                <ol>
+                {% for question in latest_question_list %}
+                    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+                {% endfor %}
+                </ol>
+            {% else %}
+                <p>No polls are available.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div style="text-align: center; color: #333333">
+        <p><em>Only logged in admin users can add, edit, or delete polls. Go to the <a href="{% url 'admin:index' %}">admin page</a> to manage polls.</em></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 The Django Poll App - By <a style="color: inherit" href="https://github.com/hoangsonww">Son Nguyen</a></p>
+    </footer>
+</body>
+
+</html>
