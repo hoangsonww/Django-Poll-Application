@@ -4,8 +4,10 @@ from django.db.models import F
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
-from .models import Choice, Question
+
 from rest_framework import viewsets, permissions
+
+from .models import Choice, Question
 from .serializers import QuestionSerializer, ChoiceSerializer
 
 
