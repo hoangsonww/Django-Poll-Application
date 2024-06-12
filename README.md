@@ -194,4 +194,4 @@ If you have any questions about this project or Django (or even the Django REST 
 
 ---
 
-Thank you for visiting!
+Thank you for visiting today!

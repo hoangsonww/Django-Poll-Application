@@ -20,7 +20,6 @@
             min-height: 100vh;
             text-align: center;
         }
-
         .poll-container {
             background-color: #fff;
             padding: 30px;
@@ -29,38 +28,31 @@
             width: 80%;
             max-width: 600px;
         }
-
         legend h1 {
             font-size: 1.8em;
             color: #333;
             margin-bottom: 20px;
         }
-
         h2 {
             color: #2980b9;
             margin-top: 25px;
             margin-bottom: 10px;
         }
-
         .choice-list {
             list-style: none;
             padding: 0;
         }
-
         .choice-list li {
             display: flex;
             align-items: center;
             margin-bottom: 10px;
         }
-
         .choice-list li input[type="radio"] {
             margin-right: 10px;
         }
-
         .choice-list li label {
             margin-bottom: 0;
         }
-
         .vote-button {
             background-color: #2ecc71;
             color: white;
@@ -71,11 +63,9 @@
             font-size: 1.1em;
             transition: background-color 0.3s ease;
         }
-
         .vote-button:hover {
             background-color: #27ae60;
         }
-
         footer {
             text-align: center;
             padding: 1em 0;
@@ -92,7 +82,6 @@
             <fieldset>
                 <legend><h1>{{ question.question_text }}</h1></legend>
                 {% if error_message %}<p class="error-message">{{ error_message }}</p>{% endif %}
-
                 <h2>Answer Choices:</h2>
                 <ul class="choice-list">
                     {% for choice in question.choice_set.all %}
@@ -102,14 +91,11 @@
                         </li>
                     {% endfor %}
                 </ul>
-
                 <input type="submit" value="Vote" class="vote-button">
             </fieldset>
         </form>
-
         <a class="back-button" href="{% url 'polls:index' %}">Back to Polls</a>
     </div>
-
     <footer>
         <p>&copy; 2024 The Django Poll App - By <a style="color: inherit" href="https://github.com/hoangsonww">Son Nguyen</a></p>
     </footer>
