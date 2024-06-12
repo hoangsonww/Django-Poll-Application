@@ -6,6 +6,7 @@ admin.site.site_header = "Polls Application Administration"
 
 class ChoiceInline(admin.TabularInline):
     model = Choice
+
     extra = 3
 
 
