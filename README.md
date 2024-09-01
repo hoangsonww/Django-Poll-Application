@@ -96,13 +96,12 @@ DEBUG = True
 ```
 
 Also, as you develop the app, every time you make changes to the data in the back end, be sure that you migrate them to the SQLite database using the following commands:
-
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-Then start the server again and you'll be all set!
+Then start the server again using `python manage.py runserver` and you'll be all set!
 
 ## Usage
 
