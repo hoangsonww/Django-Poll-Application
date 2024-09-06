@@ -2,171 +2,171 @@
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>"{{ question.question_text }}" - Poll Results</title>
-    <link rel="icon" type="image/x-icon" href="../../static/images/favicon.ico">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-        header {
-            background-color: #2980b9;
-            color: white;
-            text-align: center;
-            padding: 1.5em 0;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-        }
-        h1 {
-            margin: 0;
-            font-size: 2em;
-        }
-        .main-content {
-            padding-top: 5.5em;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-grow: 1;
-        }
-        .results-container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 600px;
-            margin-top: 20px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin-top: 20px;
-            text-align: left;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        footer {
-            text-align: center;
-            padding: 1em 0;
-            margin-top: 20px;
-            color: #7f8c8d;
-            width: 100%;
-        }
-        .vote-again {
-            display: block;
-            margin-top: 20px;
-            background-color: #3498db;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
-        }
-        .vote-again:hover {
-            background-color: #2980b9;
-        }
-        #resultsChart {
-            max-width: 500px;
-            margin: 20px auto;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Poll Results for "{{ question.question_text }}"</h1>
-    </header>
-    <div class="main-content">
-        <div class="results-container">
-            <h2>Results for "{{ question.question_text }}"</h2>
-            <ul>
-            {% for choice in question.choice_set.all %}
-                <li>
-                    {{ choice.choice_text }} - {{ choice.votes }} vote{{ choice.votes|pluralize }}
-                    {% if choice == correct_choice %}
-                        <span style="color:green;">(Correct Answer)</span>
-                    {% endif %}
-                </li>
-            {% endfor %}
-            </ul>
-            <canvas id="resultsChart"></canvas>
-            <a class="vote-again" href="{% url 'polls:detail' question.id %}">Vote again?</a>
+    <head>
+        <meta charset="UTF-8">
+        <title>"{{ question.question_text }}" - Poll Results</title>
+        <link rel="icon" type="image/x-icon" href="../../static/images/favicon.ico">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            body {
+                font-family: 'Helvetica Neue', Arial, sans-serif;
+                background-color: #f4f4f4;
+                color: #333;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+            }
+            header {
+                background-color: #2980b9;
+                color: white;
+                text-align: center;
+                padding: 1.5em 0;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: fixed;
+                top: 0;
+                z-index: 1000;
+            }
+            h1 {
+                margin: 0;
+                font-size: 2em;
+            }
+            .main-content {
+                padding-top: 5.5em;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-grow: 1;
+            }
+            .results-container {
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 80%;
+                max-width: 600px;
+                margin-top: 20px;
+            }
+            ul {
+                list-style: none;
+                padding: 0;
+                margin-top: 20px;
+                text-align: left;
+            }
+            li {
+                margin-bottom: 10px;
+            }
+            footer {
+                text-align: center;
+                padding: 1em 0;
+                margin-top: 20px;
+                color: #7f8c8d;
+                width: 100%;
+            }
+            .vote-again {
+                display: block;
+                margin-top: 20px;
+                background-color: #3498db;
+                color: white;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 5px;
+                text-decoration: none;
+                font-size: 1em;
+                transition: background-color 0.3s ease;
+            }
+            .vote-again:hover {
+                background-color: #2980b9;
+            }
+            #resultsChart {
+                max-width: 500px;
+                margin: 20px auto;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Poll Results for "{{ question.question_text }}"</h1>
+        </header>
+        <div class="main-content">
+            <div class="results-container">
+                <h2>Results for "{{ question.question_text }}"</h2>
+                <ul>
+                {% for choice in question.choice_set.all %}
+                    <li>
+                        {{ choice.choice_text }} - {{ choice.votes }} vote{{ choice.votes|pluralize }}
+                        {% if choice == correct_choice %}
+                            <span style="color:green;">(Correct Answer)</span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+                <canvas id="resultsChart"></canvas>
+                <a class="vote-again" href="{% url 'polls:detail' question.id %}">Vote again?</a>
+            </div>
         </div>
-    </div>
-    <footer>
-        <p>&copy; 2024 The Django Poll App - By <a style="color: inherit" href="https://github.com/hoangsonww">Son Nguyen</a></p>
-    </footer>
-    <script>
-        const ctx = document.getElementById('resultsChart').getContext('2d');
-        const resultsData = {
-            labels: [{% for choice in question.choice_set.all %}'{{ choice.choice_text }}',{% endfor %}],
-            datasets: [{
-                label: 'Number of Votes',
-                data: [{% for choice in question.choice_set.all %}{{ choice.votes }},{% endfor %}],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.7)',  // Red
-                    'rgba(54, 162, 235, 0.7)',  // Blue
-                    'rgba(255, 206, 86, 0.7)',  // Yellow
-                    'rgba(75, 192, 192, 0.7)',  // Green
-                    'rgba(153, 102, 255, 0.7)', // Purple
-                    'rgba(255, 159, 64, 0.7)',  // Orange
-                    'rgba(255, 0, 0, 0.7)',      // Bright Red
-                    'rgba(0, 128, 0, 0.7)',      // Green
-                    'rgba(0, 0, 255, 0.7)',      // Blue
-                    'rgba(255, 165, 0, 0.7)',    // Orange
-                    'rgba(128, 0, 128, 0.7)',    // Purple
-                    'rgba(255, 192, 203, 0.7)',  // Pink
-                    'rgba(0, 255, 255, 0.7)',    // Cyan
-                    'rgba(128, 128, 0, 0.7)',    // Olive
-                    'rgba(0, 0, 128, 0.7)',      // Navy
-                    'rgba(102, 51, 0, 0.7)',     // Brown
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 0, 0, 1)',
-                    'rgba(0, 128, 0, 1)',
-                    'rgba(0, 0, 255, 1)',
-                    'rgba(255, 165, 0, 1)',
-                    'rgba(128, 0, 128, 1)',
-                    'rgba(255, 192, 203, 1)',
-                    'rgba(0, 255, 255, 1)',
-                    'rgba(128, 128, 0, 1)',
-                    'rgba(0, 0, 128, 1)',
-                    'rgba(102, 51, 0, 1)',
-                ],
-                borderWidth: 1
-            }]
-        };
-        const myChart = new Chart(ctx, {
-            type: 'bar',
-            data: resultsData,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+        <footer>
+            <p>&copy; 2024 The Django Poll App - By <a style="color: inherit" href="https://github.com/hoangsonww">Son Nguyen</a></p>
+        </footer>
+        <script>
+            const ctx = document.getElementById('resultsChart').getContext('2d');
+            const resultsData = {
+                labels: [{% for choice in question.choice_set.all %}'{{ choice.choice_text }}',{% endfor %}],
+                datasets: [{
+                    label: 'Number of Votes',
+                    data: [{% for choice in question.choice_set.all %}{{ choice.votes }},{% endfor %}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',   // Red
+                        'rgba(54, 162, 235, 0.7)',   // Blue
+                        'rgba(255, 206, 86, 0.7)',   // Yellow
+                        'rgba(75, 192, 192, 0.7)',   // Green
+                        'rgba(153, 102, 255, 0.7)',  // Purple
+                        'rgba(255, 159, 64, 0.7)',   // Orange
+                        'rgba(255, 0, 0, 0.7)',      // Bright Red
+                        'rgba(0, 128, 0, 0.7)',      // Green
+                        'rgba(0, 0, 255, 0.7)',      // Blue
+                        'rgba(255, 165, 0, 0.7)',    // Orange
+                        'rgba(128, 0, 128, 0.7)',    // Purple
+                        'rgba(255, 192, 203, 0.7)',  // Pink
+                        'rgba(0, 255, 255, 0.7)',    // Cyan
+                        'rgba(128, 128, 0, 0.7)',    // Olive
+                        'rgba(0, 0, 128, 0.7)',      // Navy
+                        'rgba(102, 51, 0, 0.7)',     // Brown
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 0, 0, 1)',
+                        'rgba(0, 128, 0, 1)',
+                        'rgba(0, 0, 255, 1)',
+                        'rgba(255, 165, 0, 1)',
+                        'rgba(128, 0, 128, 1)',
+                        'rgba(255, 192, 203, 1)',
+                        'rgba(0, 255, 255, 1)',
+                        'rgba(128, 128, 0, 1)',
+                        'rgba(0, 0, 128, 1)',
+                        'rgba(102, 51, 0, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            };
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: resultsData,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
-    </script>
-</body>
+            });
+        </script>
+    </body>
 </html>
