@@ -21,6 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = []
 
+# Put Secret Key and set Debug to True here...
+
 # Application definition
 
 INSTALLED_APPS = [
