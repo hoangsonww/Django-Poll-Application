@@ -1,6 +1,6 @@
 # The Django Poll Application
 
-This repository hosts a poll application that was built with Django, designed to showcase fundamental Django concepts like models, views, templates, and the admin interface.
+This repository hosts a simple, lightweight poll application that was built with Django, designed to showcase fundamental Django concepts like models, views, templates, and the admin interface.
 
 ## Table of Contents
 - [User Interface](#user-interface)
@@ -202,4 +202,4 @@ If you have any questions about this project or Django (or even the Django REST 
 
 ---
 
-Thank you for visiting today!
+Thank you for visiting today! Created with ❤️ in 2024 by [Son Nguyen](https://github.com/hoangsonww).
