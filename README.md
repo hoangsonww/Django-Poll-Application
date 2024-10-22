@@ -3,6 +3,7 @@
 This repository hosts a simple, lightweight poll application that was built with Django, designed to showcase fundamental Django concepts like models, views, templates, and the admin interface.
 
 ## Table of Contents
+- [Live Deployment](#live-deployment)
 - [User Interface](#user-interface)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
@@ -13,6 +14,14 @@ This repository hosts a simple, lightweight poll application that was built with
 - [Contributions](#contributions)
 - [License](#license)
 - [Contact](#contact)
+
+## Live Deployment
+
+You can access the live deployment of this project [here](https://django-poll-application.onrender.com).
+
+The app is hosted on Render, a cloud platform that offers free hosting for static sites and web services. The deployment is automatically updated whenever changes are pushed to the `master` branch.
+
+Note: The server may spin down after a period of inactivity, so the initial load time may be longer. It may take up to 2 minutes to load the page if the server is inactive for a while. Please be patient!
 
 ## User Interface
 
